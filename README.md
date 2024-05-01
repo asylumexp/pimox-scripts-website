@@ -8,7 +8,8 @@ feel free to fork the project. or post feedback in the [Discussion tab](https://
 
 - [ ] re-design the home-page
   - [ ] Add search bar for easy finding of scripts
-  - [ ] Add modern landing page.
+  - [x] Add modern landing page.
   - [ ] Add links for videos mentioning the script
   - [ ] Add links for socials. e.g. discord etc
 - [ ] FIX: fix drop downs not opening when searching
+- [ ] Add: Responsive design
