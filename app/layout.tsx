@@ -3,8 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/Navbar";
-import React from "react";
 import { InfoToastWithButton, WarningToast } from "@/components/WarningToast";
+import Workbox from "@/components/Workbox";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,11 +48,7 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: any) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -63,6 +59,7 @@ export default function RootLayout({
         ></script>
       </head>
       <body className={inter.className}>
+        <Workbox />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -72,7 +69,7 @@ export default function RootLayout({
           <div className="flex w-full flex-col justify-center">
             <Navbar />
             <div className="flex w-full justify-center">
-              <div className="w-full max-w-7xl ">
+              <div className="w-full max-w-7xl">
                 {children}
                 <Toaster richColors />
                 <WarningToast
