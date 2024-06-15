@@ -8,6 +8,7 @@ export type Script = {
   alert1: string;
   alert2: string;
   alert3: string;
+  alert4: string;
   alpineScript: string;
   alpine_default_cpu: string;
   alpine_default_hdd: string;

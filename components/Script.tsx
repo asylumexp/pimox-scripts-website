@@ -340,6 +340,12 @@ function ScriptItem({
                             {descriptionCodeBlock(item.alert3)}
                           </p>
                         )}
+                        {item.alert4 && (
+                          <p className="inline-flex items-center gap-2 rounded-lg border border-red-500/25 bg-destructive/25 p-2 pl-4 text-sm">
+                            <Info className="h-4 min-h-4 w-4 min-w-4" />
+                            {descriptionCodeBlock(item.alert4)}
+                          </p>
+                        )}
                       </div>
                     )}
                   </div>
