@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/Navbar";
 import React from "react";
 import { InfoToastWithButton, WarningToast } from "@/components/WarningToast";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -88,6 +89,7 @@ export default function RootLayout({
             </div>
           </div>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
