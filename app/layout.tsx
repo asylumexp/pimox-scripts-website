@@ -10,14 +10,15 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title:
-    "proxmox VE Helper-Scripts | Scripts for Streamlining Your Homelab with Proxmox VE",
+    "Proxmox arm64 Install Scripts | An Unofficial Port of tteck's Helper-Scripts to arm64",
   generator: "Next.js",
-  applicationName: "Proxmox VE Helper-Scripts",
+  applicationName: "Proxmox arm64 Install Scripts",
   referrer: "origin-when-cross-origin",
   keywords: [
     "Proxmox VE",
     "Helper-Scripts",
     "tteck",
+    "pimox",
     "helper",
     "scripts",
     "proxmox",
@@ -26,17 +27,17 @@ export const metadata = {
   authors: [{ name: "tteck" }, { name: "Bram" }],
   creator: "tteck, Bram Suurd",
   publisher: "tteck, Bram Suurd",
-  description: "Scripts for Streamlining Your Homelab with Proxmox VE",
+  description: "An Unofficial Port of tteck's Helper-Scripts to arm64",
   favicon: "/app/favicon.ico",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://helper-scripts.com/"),
+  metadataBase: new URL("https://pimox-scripts.com/"),
   openGraph: {
-    title: "Proxmox VE Helper-Scripts",
-    description: "Scripts for Streamlining Your Homelab with Proxmox VE",
+    title: "Proxmox arm64 Install Scripts",
+    description: "An Unofficial Port of tteck's Helper-Scripts to arm64",
     url: "/defaultimg.png",
     images: [
       {

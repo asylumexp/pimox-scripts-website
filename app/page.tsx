@@ -13,24 +13,10 @@ export default function LandingPage() {
         <div className="flex animate-fade-up flex-col items-center justify-center">
           <Image src="/logo.png" alt="proxmox" width={150} height={150} />
           <h1 className="relative z-20 bg-gradient-to-b from-[#0080C4] to-[#004c75] bg-clip-text py-4 text-4xl font-bold text-transparent sm:text-5xl text-center sm:text-left">
-            Proxmox VE Helper-Scripts
+            Proxmox arm64 Install Scripts
           </h1>
           <p className="bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-xl text-center sm:text-left">
-            Proxmox VE Scripts for{" "}
-            <Typewriter
-              words={[
-                "Streamlining",
-                "Automating",
-                "Simplifying",
-                "Optimizing",
-              ]}
-              loop={false}
-              cursor={true}
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={2000}
-            />
-            Your Homelab
+            An Unofficial Port of tteck&#39;s Helper-Scripts to arm64
           </p>
           <div className="flex gap-2 py-4">
             <Button asChild variant={"secondary"}>

@@ -126,7 +126,7 @@ function Navbar() {
             >
               <Image height={18} width={18} alt="logo" src={logo} />
               <span>
-                Proxmox VE Helper-Scripts
+                Proxmox arm64 Install Scripts
               </span>
             </a>
           </h2>
@@ -140,7 +140,7 @@ function Navbar() {
                 className="max-w-screen max-h-screen w-full overflow-y-scroll"
               >
                 <SheetHeader>
-                  <SheetTitle>Proxmox VE Helper-Scripts</SheetTitle>
+                  <SheetTitle>Proxmox arm64 Install Scripts</SheetTitle>
                   <SheetDescription className=" overflow-scroll">
                     <div className="flex min-w-72 flex-col overflow-scroll sm:max-w-72">
                       <p className="mb-5 text-xl font-bold">Scripts</p>
@@ -209,25 +209,25 @@ function Navbar() {
           <div className="hidden sm:flex">
             {[
               {
-                href: "https://github.com/tteck/Proxmox/discussions",
+                href: "https://github.com/asylumexp/Proxmox/discussions",
                 event: "Discussions",
                 icon: <MessageSquareText className="mr-2 h-4 w-4" />,
                 text: "Discussions",
               },
               {
-                href: "https://github.com/tteck/Proxmox/blob/main/.github/CONTRIBUTING.md",
+                href: "https://github.com/asylumexp/Proxmox/blob/main/.github/CONTRIBUTING.md",
                 event: "Contributing",
                 icon: <LuGitPullRequestDraft className="mr-2 h-4 w-4" />,
                 text: "Contribute",
               },
               {
-                href: "https://github.com/tteck/Proxmox/blob/main/USER_SUBMITTED_GUIDES.md",
+                href: "https://github.com/asylumexp/Proxmox/blob/main/USER_SUBMITTED_GUIDES.md",
                 event: "Guides",
                 icon: <LuBookOpenCheck className="mr-2 h-4 w-4" />,
                 text: "Guides",
               },
               {
-                href: "https://github.com/tteck/Proxmox/blob/main/CHANGELOG.md",
+                href: "https://github.com/asylumexp/Proxmox/blob/main/CHANGELOG.md",
                 event: "Change Log",
                 icon: <LuClipboardSignature className="mr-2 h-4 w-4" />,
                 text: "Changelog",
@@ -239,7 +239,7 @@ function Navbar() {
                 text: "Buy me a coffee",
               },
               {
-                href: "https://github.com/tteck/Proxmox",
+                href: "https://github.com/asylumexp/Proxmox",
                 event: "View on GitHub",
                 icon: <FaGithub className="mr-2 h-4 w-4" />,
                 text: "View on Github",

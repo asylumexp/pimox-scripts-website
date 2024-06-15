@@ -43,19 +43,7 @@ function ScriptItem({
 
   const pattern = useMemo(() => /(https:\/\/github\.com\/tteck\/Proxmox\/raw\/main\/(ct|misc|vm)\/([^\/]+)\.sh)/, []);
 
-  const installCommand = useMemo(() => {
-    if (item) {
-      const keys = Object.keys(item);
-      for (const key of keys) {
-        const value = item[key as keyof Script];
-        if (typeof value === "string" && pattern.test(value) &&
-            !value.includes("alpine") && !value.includes("discussions") && !value.includes("2>/dev/null")) {
-          return value;
-        }
-      }
-    }
-    return null;
-  }, [item, pattern]);
+  const installCommand = item?.installCommand;
 
   const sourceUrl = useMemo(() => {
     const transformUrlToInstallScript = (url: string) => {
@@ -104,7 +92,7 @@ function ScriptItem({
               <div>
                 <Button className="text-white">
                   <Link
-                    href="https://github.com/tteck/Proxmox"
+                    href="https://github.com/asylumexp/Proxmox"
                     data-umami-event="Star on Github"
                     target="_blank"
                   >
@@ -175,6 +163,7 @@ function ScriptItem({
       };
     }
   }, []);
+  console.log(item?.installCommand);
 
   const isMobile = width <= 640;
 
