@@ -15,6 +15,13 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import clsx from "clsx";
 
+const statusEmojis = {
+  created: "☑️",
+  untested: "⭕",
+  unsupported: "❌",
+  unported: "🔘",
+}
+
 const ScriptBrowser = ({
   items,
   selectedScript,
@@ -256,7 +263,8 @@ const ScriptBrowser = ({
                         />
                       )}
                       <span className="flex items-center gap-2">
-                        {script.title}
+                        {statusEmojis[script.status]}
+                        <p className="ml-1">{script.title}</p>
                         {script.isMostViewed && (
                           <Star className="h-3 w-3 text-yellow-500"></Star>
                         )}

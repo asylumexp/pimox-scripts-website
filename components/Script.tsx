@@ -14,6 +14,21 @@ import LatestScripts from "./LatestScripts";
 import MostViewedScripts from "./MostViewedScripts";
 import RecentlyUpdatedScripts from "./RecentlyUpdatedScripts";
 
+const statusDescriptions = {
+  ran: "The install script has been tested by creating a container and using the application.",
+  created: "The install script has been tested by creating a container.",
+  untested: "Install script has been ported, but has not been tested.",
+  unsupported: "Unsupported or broken script.",
+  unported: "Install script has not been ported to ARM64.",
+};
+
+const statusEmojis = {
+  ran: "✅",
+  created: "☑️",
+  untested: "⭕",
+  unsupported: "❌",
+  unported: "🔘",
+};
 function ScriptItem({
   items,
   selectedScript,
@@ -163,7 +178,6 @@ function ScriptItem({
       };
     }
   }, []);
-  console.log(item?.installCommand);
 
   const isMobile = width <= 640;
 
@@ -191,12 +205,18 @@ function ScriptItem({
                     <div className="ml-4 flex flex-col justify-between">
                       <div className="flex h-full w-full flex-col justify-between">
                         <div>
-                          <h1 className="text-lg font-semibold">
-                            {item.title}
-                          </h1>
-                          <p className="w-full text-sm text-muted-foreground">
-                            Date added: {extractDate(item.created)}
-                          </p>
+                          <div className="group relative flex flex-col">
+                            <h2 className="text-lg font-semibold flex items-center">
+                              {item.title}
+                              <span className="ml-1 text-gray-400">{statusEmojis[item.status]}</span>
+                              <span className="absolute bottom-full mb-2 hidden w-64 rounded-md bg-black px-2 py-1 text-center text-xs text-white opacity-0 group-hover:block group-hover:opacity-100">
+                                {statusDescriptions[item.status]}
+                              </span>
+                            </h2>
+                            <p className="w-full text-sm text-muted-foreground">
+                              Date added: {extractDate(item.created)}
+                            </p>
+                          </div>
                         </div>
                         <div className="flex gap-5">
                           {item.default_cpu && (
