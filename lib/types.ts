@@ -35,6 +35,7 @@ export type Script = {
   isMostViewed: boolean;
   mostViewedPosition: number;
   interface: string;
+  status: string;
 };
 
 export interface Category {

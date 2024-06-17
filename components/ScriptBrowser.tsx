@@ -21,7 +21,7 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import clsx from "clsx";
 
-const statusEmojis = {
+const statusEmojis: { [key: string]: string } = {  
   created: "☑️",
   untested: "⭕",
   unsupported: "❌",

@@ -23,21 +23,20 @@ import LatestScripts from "./LatestScripts";
 import MostViewedScripts from "./MostViewedScripts";
 import RecentlyUpdatedScripts from "./RecentlyUpdatedScripts";
 
-const statusDescriptions = {
-  ran: "The install script has been tested by creating a container and using the application.",
+const statusDescriptions: { [key: string]: string } = {
   created: "The install script has been tested by creating a container.",
   untested: "Install script has been ported, but has not been tested.",
   unsupported: "Unsupported or broken script.",
   unported: "Install script has not been ported to ARM64.",
 };
 
-const statusEmojis = {
-  ran: "✅",
+const statusEmojis: { [key: string]: string } = {
   created: "☑️",
   untested: "⭕",
   unsupported: "❌",
   unported: "🔘",
 };
+
 function ScriptItem({
   items,
   selectedScript,
