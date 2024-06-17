@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   Accordion,
   AccordionItem,
@@ -9,7 +9,13 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import Image from "next/image";
 import { X, EyeOff, Eye, Star } from "lucide-react";
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import { Category } from "@/lib/types";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -36,13 +42,13 @@ const ScriptBrowser = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const [showLogos, setShowLogos] = useState<boolean>(() => {
-    const saved = localStorage.getItem('showLogos');
+    const saved = localStorage.getItem("showLogos");
     return saved ? JSON.parse(saved) : true;
   });
   const linkRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   useEffect(() => {
-    localStorage.setItem('showLogos', JSON.stringify(showLogos));
+    localStorage.setItem("showLogos", JSON.stringify(showLogos));
   }, [showLogos]);
 
   useEffect(() => {
@@ -91,8 +97,10 @@ const ScriptBrowser = ({
 
   useEffect(() => {
     const matchingScripts = links
-      .flatMap(category => category.expand.items)
-      .filter(script => script.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      .flatMap((category) => category.expand.items)
+      .filter((script) =>
+        script.title.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
 
     if (matchingScripts.length === 1) {
       const scriptTitle = matchingScripts[0].title;
@@ -107,17 +115,22 @@ const ScriptBrowser = ({
     }
   }, [searchTerm, links, setSelectedScript]);
 
-  const handleSelected = useCallback((title: string) => {
-    setSelectedScript(title);
-  }, [setSelectedScript]);
+  const handleSelected = useCallback(
+    (title: string) => {
+      setSelectedScript(title);
+    },
+    [setSelectedScript],
+  );
 
   useEffect(() => {
     if (selectedScript) {
-      const category = links.find(category =>
-        category.expand.items.some(script => script.title === selectedScript)
+      const category = links.find((category) =>
+        category.expand.items.some((script) => script.title === selectedScript),
       );
       if (category) {
-        setExpandedItems(prev => Array.from(new Set([...prev, category.catagoryName])));
+        setExpandedItems((prev) =>
+          Array.from(new Set([...prev, category.catagoryName])),
+        );
         handleSelected(selectedScript);
       }
     }
@@ -146,7 +159,7 @@ const ScriptBrowser = ({
     <div className="flex min-w-72 flex-col sm:max-w-72">
       <div className="mb-2 flex items-end justify-between">
         <h1 className=" text-xl font-bold">Categories</h1>
-        <p className="text-xs text-muted-foreground italic">
+        <p className="text-xs italic text-muted-foreground">
           {links.reduce(
             (acc, category) => acc + category.expand.items.length,
             0,
@@ -198,122 +211,121 @@ const ScriptBrowser = ({
         )}
       </div>
       <div className="rounded-lg">
-      <Accordion {...accordionProps}>
-        {filteredLinks.map((category) => (
-          <AccordionItem
-            key={category.collectionId}
-            value={category.catagoryName}
-            className={clsx(
-              'sm:text-md flex flex-col border-none',
-              { 'bg-accent/30 rounded-lg': expandedItems.includes(category.catagoryName) && expandedItems.length <= 1 }
-            )}
-          >
-            <AccordionTrigger
-              className={clsx(
-                'transition ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-accent duration-250 rounded-lg',
-                { '': expandedItems.includes(category.catagoryName) }
-              )}
+        <Accordion {...accordionProps}>
+          {filteredLinks.map((category) => (
+            <AccordionItem
+              key={category.collectionId}
+              value={category.catagoryName}
+              className={clsx("sm:text-md flex flex-col border-none", {
+                "rounded-lg bg-accent/30":
+                  expandedItems.includes(category.catagoryName) &&
+                  expandedItems.length <= 1,
+              })}
             >
-              <div className="mr-2 flex w-full items-center justify-between">
-                <span className="pl-2">
-                  {category.catagoryName}{" "}
-                </span>
-                <span className="rounded-full bg-gray-200 px-2 py-1 text-xs text-muted-foreground hover:no-underline dark:bg-blue-800/20">
-                  {category.expand.items.length}
-                </span>
-              </div>{" "}
-            </AccordionTrigger>
-            <AccordionContent
-              data-state={
-                expandedItems.includes(category.catagoryName)
-                  ? "open"
-                  : "closed"
-              }
-              className="pt-0"
-            >
-              {category.expand.items
-                .filter((script) =>
-                  script.title.toLowerCase().includes(searchTerm.toLowerCase()),
-                )
-                .map((script, index) => (
-                  <p key={index}>
-                    <Link
-                      href={{
-                        pathname: "/scripts",
-                        query: { id: script.title },
-                      }}
-                      className={`flex cursor-pointer items-center justify-between gap-1 px-1 py-1 text-muted-foreground hover:rounded-lg hover:bg-accent/60 hover:dark:bg-accent/20 ${
-                        selectedScript === script.title
-                          ? "rounded-lg bg-accent font-semibold dark:bg-accent/30 dark:text-white"
-                          : ""
-                      }`}
-                      onClick={() => handleSelected(script.title)}
-                      ref={(el) => {
-                        linkRefs.current[script.title] = el;
-                      }}
-                    >
-                      {showLogos && script.logo && (
-                        <Image
-                          src={script.logo}
-                          priority
-                          alt={script.title}
-                          width={16}
-                          height={16}
-                          className="mr-1 rounded-full"
-                        />
-                      )}
-                      <span className="flex items-center gap-2">
-                        {statusEmojis[script.status]}
-                        <p className="ml-1">{script.title}</p>
-                        {script.isMostViewed && (
-                          <Star className="h-3 w-3 text-yellow-500"></Star>
-                        )}
-                      </span>
-                      <Badge
-                        className={clsx(
-                          "ml-auto w-[37.69px] justify-center text-center",
-                          {
-                            "border-primary/75 text-primary/75":
-                              script.item_type === "VM",
-                            "border-yellow-500/75 text-yellow-500/75":
-                              script.item_type === "LXC",
-                            "border-none": script.item_type === "",
-                            hidden: !["VM", "LXC", ""].includes(
-                              script.item_type,
-                            ),
-                          },
-                        )}
+              <AccordionTrigger
+                className={clsx(
+                  "duration-250 rounded-lg transition ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-accent",
+                  { "": expandedItems.includes(category.catagoryName) },
+                )}
+              >
+                <div className="mr-2 flex w-full items-center justify-between">
+                  <span className="pl-2">{category.catagoryName} </span>
+                  <span className="rounded-full bg-gray-200 px-2 py-1 text-xs text-muted-foreground hover:no-underline dark:bg-blue-800/20">
+                    {category.expand.items.length}
+                  </span>
+                </div>{" "}
+              </AccordionTrigger>
+              <AccordionContent
+                data-state={
+                  expandedItems.includes(category.catagoryName)
+                    ? "open"
+                    : "closed"
+                }
+                className="pt-0"
+              >
+                {category.expand.items
+                  .filter((script) =>
+                    script.title
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()),
+                  )
+                  .map((script, index) => (
+                    <p key={index}>
+                      <Link
+                        href={{
+                          pathname: "/scripts",
+                          query: { id: script.title },
+                        }}
+                        className={`flex cursor-pointer items-center justify-between gap-1 px-1 py-1 text-muted-foreground hover:rounded-lg hover:bg-accent/60 hover:dark:bg-accent/20 ${
+                          selectedScript === script.title
+                            ? "rounded-lg bg-accent font-semibold dark:bg-accent/30 dark:text-white"
+                            : ""
+                        }`}
+                        onClick={() => handleSelected(script.title)}
+                        ref={(el) => {
+                          linkRefs.current[script.title] = el;
+                        }}
                       >
-                        {script.item_type}
-                      </Badge>
-                    </Link>
-                  </p>
-                ))}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
-    <p className="mt-6 ml-4 text-xs text-muted-foreground flex justify-center">
-      <Button
-      variant="outline"
-        className="cursor-pointer"
-        onClick={() => setShowLogos(!showLogos)}
-      >
-        {showLogos ? (
-          <>
-            <EyeOff className="mr-1 inline-block h-4 w-4 align-text-bottom" />
-            Hide Logos
-          </>
-        ) : (
-          <>
-            <Eye className="mr-1 inline-block h-4 w-4 align-text-bottom" />
-            Show Logos
-          </>
-        )}
-      </Button>
+                        {showLogos && script.logo && (
+                          <Image
+                            src={script.logo}
+                            priority={true}
+                            alt={script.title}
+                            width={16}
+                            height={16}
+                            className="mr-1 rounded-full"
+                          />
+                        )}
+                        <span className="flex items-center gap-2">
+                          {statusEmojis[script.status]}
+                          <p className="ml-1">{script.title}</p>
+                          {script.isMostViewed && (
+                            <Star className="h-3 w-3 text-yellow-500"></Star>
+                          )}
+                        </span>
+                        <Badge
+                          className={clsx(
+                            "ml-auto w-[37.69px] justify-center text-center",
+                            {
+                              "text-primary/75": script.item_type === "VM",
+                              "text-yellow-500/75": script.item_type === "LXC",
+                              "border-none": script.item_type === "",
+                              hidden: !["VM", "LXC", ""].includes(
+                                script.item_type,
+                              ),
+                            },
+                          )}
+                        >
+                          {script.item_type}
+                        </Badge>
+                      </Link>
+                    </p>
+                  ))}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+      <p className="ml-4 mt-6 flex justify-center text-xs text-muted-foreground">
+        <Button
+          variant="outline"
+          className="cursor-pointer"
+          onClick={() => setShowLogos(!showLogos)}
+        >
+          {showLogos ? (
+            <>
+              <EyeOff className="mr-1 inline-block h-4 w-4 align-text-bottom" />
+              Hide Logos
+            </>
+          ) : (
+            <>
+              <Eye className="mr-1 inline-block h-4 w-4 align-text-bottom" />
+              Show Logos
+            </>
+          )}
+        </Button>
       </p>
-  </div>
+    </div>
   );
 };
 

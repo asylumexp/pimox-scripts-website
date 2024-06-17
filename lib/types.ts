@@ -45,7 +45,7 @@ export interface Category {
   expand: {
     items: Script[];
   };
-};
+}
 
 export type Scripts = {
   page: number;

@@ -10,8 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title:
-    "Proxmox arm64 Install Scripts | An Unofficial Port of tteck's Helper-Scripts to arm64",
+  title: "Proxmox arm64 Install Scripts",
   generator: "Next.js",
   applicationName: "Proxmox arm64 Install Scripts",
   referrer: "origin-when-cross-origin",
@@ -25,10 +24,11 @@ export const metadata = {
     "proxmox",
     "VE",
   ],
-  authors: [{ name: "tteck" }, { name: "Bram" }],
-  creator: "tteck, Bram Suurd",
-  publisher: "tteck, Bram Suurd",
-  description: "An Unofficial Port of tteck's Helper-Scripts to arm64",
+  authors: { name: "Bram Suurd" },
+  creator: "Bram Suurd",
+  publisher: "Bram Suurd",
+  description:
+    "An Unofficial Port of tteck's Helper-Scripts to arm64.",
   favicon: "/app/favicon.ico",
   formatDetection: {
     email: false,
@@ -42,7 +42,7 @@ export const metadata = {
     url: "/defaultimg.png",
     images: [
       {
-        url: "https://helper-scripts.com/defaultimg.png",
+        url: "https://proxmox-helper-scripts.vercel.app/defaultimg.png",
       },
     ],
     locale: "en_US",
