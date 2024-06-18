@@ -15,6 +15,13 @@ import { extractDate } from "@/lib/time";
 
 const ITEMS_PER_PAGE = 3;
 
+const statusEmojis: { [key: string]: string } = {  
+  created: "☑️",
+  untested: "⭕",
+  unsupported: "❌",
+  unported: "🔘",
+}
+
 function LatestScripts({ items }: { items: Category[] }) {
   const [page, setPage] = useState(1);
 
@@ -78,7 +85,7 @@ function LatestScripts({ items }: { items: Category[] }) {
                   <Image src={item.logo} height={40} width={40} alt="" />
                 </div>
                 <h3 className="text-xl">
-                  {item.title} {item.item_type}
+                  {statusEmojis[item.status]} {item.title} {item.item_type}
                 </h3>
               </CardTitle>
               <p className="text-sm text-muted-foreground">
